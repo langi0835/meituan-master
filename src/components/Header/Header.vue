@@ -39,7 +39,7 @@
     <div class="bulletin-wrapper">
       <img class="icon" v-if="poiInfo.discounts2" :src="poiInfo.discounts2[0].icon_url" />
       <span class="text" v-if="poiInfo.discounts2">{{poiInfo.discounts2[0].info}}</span>
-      <div class="detail" v-if="poiInfo.discounts2">
+      <div class="detail" v-if="poiInfo.discounts2" @click="showBulletin">
         {{poiInfo.discounts2.length}}個活動
         <span class="icon-keyboard_arrow_right"></span>
       </div>
@@ -51,36 +51,43 @@
     </div>
 
     <!-- 公告詳情頁 -->
-    <div class="bulletin-detail">
-      <div class="detail-wrapper">
-        <div class="content-wrapper">
-          <div class="icon" :style="head_bg"></div>
-          <h3 class="name">{{poiInfo.name}}</h3>
-          <!-- 評價 -->
+    <transition name="detail">
+      <div class="bulletin-detail" v-show="isShow">
+        <div class="detail-wrapper">
+          <div class="main-wrapper" :style="detail_bg">
+            <div class="icon" :style="head_bg"></div>
+            <h3 class="name">{{poiInfo.name}}</h3>
+            <!-- 評價 -->
 
-          <p class="tip">
-            {{poiInfo.min_price_tip}} {{poiInfo.shipping_fee_tip}} {{poiInfo.delivery_time_tip}}
-          </p>
-          <p class="time">
-            配送時間： {{poiInfo.shipping_time}}
-          </p>
-          <div class="discounts" v-if="poiInfo.discounts2">
-            <p>
-              <img :src="poiInfo.discounts2[0].icon_url" />
-              <span>{{poiInfo.discounts2[0].info}}</span>
+            <p class="tip">
+              {{poiInfo.min_price_tip}} <i>|</i> {{poiInfo.shipping_fee_tip}} <i>|</i> {{poiInfo.delivery_time_tip}}
             </p>
+            <p class="time">
+              配送時間： {{poiInfo.shipping_time}}
+            </p>
+            <div class="discounts" v-if="poiInfo.discounts2">
+              <p>
+                <img :src="poiInfo.discounts2[0].icon_url" />
+                <span>{{poiInfo.discounts2[0].info}}</span>
+              </p>
+            </div>
+          </div>
+          <div class="close-wrapper" @click="closeBulletin">
+            <span class="icon-close"></span>
           </div>
         </div>
-        <div class="close-wrapper">
-          <span class="icon-close"></span>
-        </div>
       </div>
-    </div>
+  </transition>
   </div>
 </template>
 
 <script>
   export default {
+    data(){
+      return {
+        isShow:false//公告詳情頁預設是否顯示
+      }
+    },
     props: {//傳值
       poiInfo: {
         type: Object,
@@ -93,6 +100,17 @@
       },
       head_bg() {
         return "background-image: url(" + this.poiInfo.pic_url + ");"
+      },
+      detail_bg(){
+        return "background-image: url(" + this.poiInfo.poi_back_pic_url + ");"
+      },
+    },
+    methods:{
+      showBulletin(){
+        this.isShow = true;
+      },
+      closeBulletin(){
+        this.isShow = false;
       }
     }
   };
