@@ -58,9 +58,15 @@
             <div class="icon" :style="head_bg"></div>
             <h3 class="name">{{poiInfo.name}}</h3>
             <!-- 評價 -->
+            <div class="score">
+              <Star :score="poiInfo.wm_poi_score"></Star>
+              <span>{{poiInfo.wm_poi_score}}</span>
+            </div>
 
             <p class="tip">
-              {{poiInfo.min_price_tip}} <i>|</i> {{poiInfo.shipping_fee_tip}} <i>|</i> {{poiInfo.delivery_time_tip}}
+                {{poiInfo.min_price_tip}}
+                <i>|</i> {{poiInfo.shipping_fee_tip}}
+                <i>|</i> {{poiInfo.delivery_time_tip}}
             </p>
             <p class="time">
               配送時間： {{poiInfo.shipping_time}}
@@ -77,16 +83,21 @@
           </div>
         </div>
       </div>
-  </transition>
+    </transition>
   </div>
 </template>
 
 <script>
+  import Star from "components/Star/Star";
+
   export default {
-    data(){
+    data() {
       return {
-        isShow:false//公告詳情頁預設是否顯示
+        isShow: false//公告詳情頁預設是否顯示
       }
+    },
+    components: {
+      Star
     },
     props: {//傳值
       poiInfo: {
@@ -101,15 +112,15 @@
       head_bg() {
         return "background-image: url(" + this.poiInfo.pic_url + ");"
       },
-      detail_bg(){
+      detail_bg() {
         return "background-image: url(" + this.poiInfo.poi_back_pic_url + ");"
       },
     },
-    methods:{
-      showBulletin(){
+    methods: {
+      showBulletin() {
         this.isShow = true;
       },
-      closeBulletin(){
+      closeBulletin() {
         this.isShow = false;
       }
     }

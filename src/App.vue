@@ -13,8 +13,8 @@
 </template>
 
 <script>
-  import Myheader from './components/Header/Header';
-  import Mynav from './components/Nav/Nav';
+  import Myheader from 'components/Header/Header';
+  import Mynav from 'components/Nav/Nav';
 
   export default {
     name: "App",
