@@ -1,0 +1,124 @@
+.goods {
+  display: flex;
+
+  /* 用此設定固定高度 */
+  position: absolute;
+  top: 190px;
+  bottom: 51px;
+
+  overflow: hidden;
+  width: 100%;
+}
+
+/* 左側選單 */
+.goods .menu-wrapper {
+  /* 不會放大,不會縮小,固定寬度 */
+  flex: 0 0 85px;
+  background-color: #f4f4f4;
+}
+.goods .menu-wrapper .menu-item {
+  padding: 16px 23px 15px 10px;
+  border-bottom: 1px solid #e4e4e4;
+}
+.goods .menu-wrapper .menu-item .text {
+  font-size: 13px;
+  color: #333333;
+  line-height: 17px;
+  vertical-align: middle;
+
+  /* 多文字顯示,加上省略號 */
+  /* 最多兩行 */
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  /* 排列方式 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.goods .menu-wrapper .menu-item .icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
+.goods .foods-wrapper {
+  flex: 1;
+}
+.goods .foods-wrapper .container-list {
+  padding: 11px 11px 0 11px;
+  border-bottom: 1px solid #e4e4e4;
+}
+.goods .foods-wrapper .container-list img {
+  width: 100%;
+  margin-bottom: 11px;
+  border-radius: 5px;
+}
+.goods .foods-wrapper .food-list {
+  padding: 11px;
+}
+.goods .foods-wrapper .food-list .title {
+  font-size: 13px;
+  height: 13px;
+  background: url("../../../resource/img/btn_yellow_highlighted@2x.png")
+    no-repeat left center;
+  background-size: 2px 10px;
+  padding-left: 7px;
+  margin-bottom: 12px;
+}
+.goods .foods-wrapper .food-list .food-item {
+  display: flex;
+  margin-bottom: 25px;
+}
+.goods .foods-wrapper .food-list .food-item .icon {
+  flex: 0 0 63px;
+  background-position: center;
+  background-size: 120% 100%;
+  background-repeat: no-repeat;
+  margin-right: 11px;
+  height: 75px;
+}
+.goods .foods-wrapper .food-list .food-item .content {
+  flex: 1;
+}
+.goods .foods-wrapper .food-list .food-item .content .name {
+  font-size: 16px;
+  line-height: 21px;
+  color: #333333;
+  margin-bottom: 10px;
+  padding-right: 27px;
+}
+.goods .foods-wrapper .food-list .food-item .content .desc {
+  font-size: 10px;
+  line-height: 19px;
+  color: #bfbfbf;
+  margin-bottom: 8px;
+
+  /* 多文字顯示,加上省略號 */
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  /* 排列方式 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.goods .foods-wrapper .food-list .food-item .content .extra {
+  font-size: 10px;
+  color: #bfbfbf;
+  margin-bottom: 7px;
+}
+.goods .foods-wrapper .food-list .food-item .content .extra .saled {
+  margin-right: 14px;
+}
+.goods .foods-wrapper .food-list .food-item .content .product {
+  height: 15px;
+  margin-bottom: 6px;
+}
+.goods .foods-wrapper .food-list .food-item .content .price{
+  font-size: 0;
+}
+.goods .foods-wrapper .food-list .food-item .content .price .text{
+  font-size: 14px;
+  color: #fb4e44;
+}
+.goods .foods-wrapper .food-list .food-item .content .price .unit{
+  font-size: 12px;
+  color: #bfbfbf;
+}
