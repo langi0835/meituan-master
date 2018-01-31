@@ -21,7 +21,7 @@
     components: {
       Myheader, Mynav
     },
-    date() {
+    data() {
       return {
         //header需要的json資料
         poiInfo: {}

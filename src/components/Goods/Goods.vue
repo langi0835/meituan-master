@@ -8,7 +8,6 @@
             <p class="text">              
               <img :src="container.tag_icon" v-if="container.tag_icon" class="icon"> 
               {{container.tag_name}}
-              <!-- {{container.tag_icon}}               -->
             </p>
           </li>
 
@@ -69,10 +68,10 @@
 <script>
 
   export default {
-    date() {
+    data() {
       return {
-        container: {},
-        goods: {}
+        container: {},//物件
+        goods: [] //集合
       }
     },
     //可在此進行非同步獲取資料
