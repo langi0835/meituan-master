@@ -68,153 +68,153 @@
 		</div>
 
 		<!-- 購物車 -->
-		<Shopcart :shipping_fee_tip="poiInfo.shipping_fee_tip" :min_price_tip="poiInfo.min_price_tip" :selectFoods="selectFoods"></Shopcart>
+		<Shopcart :poiInfo="poiInfo" :selectFoods="selectFoods"></Shopcart>
 	</div>
 </template>
 
 <script>
-	import BScroll from "better-scroll";
-	import Shopcart from "components/Shopcart/Shopcart";
-	import Cartcontrol from "components/Cartcontrol/Cartcontrol";
+import BScroll from "better-scroll";
+import Shopcart from "components/Shopcart/Shopcart";
+import Cartcontrol from "components/Cartcontrol/Cartcontrol";
 
-	export default {
-		data() {
-			return {
-				container: {}, //物件
-				goods: [], //集合
-				poiInfo: {},
-				listHeight: [],
-				scrollY: 0,
-				menuScroll: {},
-				foodScroll: {}
-			};
-		},
-		components: {
-			BScroll,
-			Shopcart,
-			Cartcontrol
-		},
-		//可在此進行非同步獲取資料
-		created() {
-			var that = this;
+export default {
+  data() {
+    return {
+      container: {}, //物件
+      goods: [], //集合
+      poiInfo: {},
+      listHeight: [],
+      scrollY: 0,
+      menuScroll: {},
+      foodScroll: {}
+    };
+  },
+  components: {
+    BScroll,
+    Shopcart,
+    Cartcontrol
+  },
+  //可在此進行非同步獲取資料
+  created() {
+    var that = this;
 
-			//因為已經將axios設為vue原型,所以可以用this(vue)呼叫
-			this.$axios
-				.get("/api/goods")
-				.then(function (response) {
-					//獲取數據
-					var dataSourse = response.data;
-					if (dataSourse.code == 0) {
-						that.container = dataSourse.data.container_operation_source;
-						that.goods = dataSourse.data.food_spu_tags;
-						that.poiInfo = dataSourse.data.poi_info;
-						//console.log(that.container);
-						//console.log(that.goods);
-						//console.log(that.poiInfo);
+    //因為已經將axios設為vue原型,所以可以用this(vue)呼叫
+    this.$axios
+      .get("/api/goods")
+      .then(function(response) {
+        //獲取數據
+        var dataSourse = response.data;
+        if (dataSourse.code == 0) {
+          that.container = dataSourse.data.container_operation_source;
+          that.goods = dataSourse.data.food_spu_tags;
+          that.poiInfo = dataSourse.data.poi_info;
+          //console.log(that.container);
+          //console.log(that.goods);
+          //console.log(that.poiInfo);
 
-						//Scroll呼叫初始化,netTick可以確保dom渲染完產生list高度後才呼叫
-						that.$nextTick(() => {
-							that.initScroll();
+          //Scroll呼叫初始化,netTick可以確保dom渲染完產生list高度後才呼叫
+          that.$nextTick(() => {
+            that.initScroll();
 
-							//計算商品各分類高度
-							that.calculateHeight();
-						});
-					}
-				})
-				.catch(function (error) {
-					//錯誤處理
-					console.log(error);
-				});
-		},
-		methods: {
-			head_bg(imgName) {
-				return "background-image: url(" + imgName + ");";
-			},
-			//卷軸的init
-			initScroll() {
-				this.menuScroll = new BScroll(this.$refs.menuScroll, {
-					click: true
-				});
-				this.foodScroll = new BScroll(this.$refs.foodScroll, {
-					click: true,
-					probeType: 3 //scroll事件參數
-				});
+            //計算商品各分類高度
+            that.calculateHeight();
+          });
+        }
+      })
+      .catch(function(error) {
+        //錯誤處理
+        console.log(error);
+      });
+  },
+  methods: {
+    head_bg(imgName) {
+      return "background-image: url(" + imgName + ");";
+    },
+    //卷軸的init
+    initScroll() {
+      this.menuScroll = new BScroll(this.$refs.menuScroll, {
+        click: true
+      });
+      this.foodScroll = new BScroll(this.$refs.foodScroll, {
+        click: true,
+        probeType: 3 //scroll事件參數
+      });
 
-				//添加滾動監聽事件
-				this.foodScroll.on("scroll", pos => {
-					//console.log(pos.y);
-					this.scrollY = Math.abs(Math.round(pos.y));
-				});
-			},
-			calculateHeight() {
-				//取得對應元素
-				let foodlist = this.$refs.foodScroll.getElementsByClassName(
-					"food-list-hook"
-				);
-				let height = 0;
-				this.listHeight.push(height);
-				for (let i = 0; i < foodlist.length; i++) {
-					const item = foodlist[i];
+      //添加滾動監聽事件
+      this.foodScroll.on("scroll", pos => {
+        //console.log(pos.y);
+        this.scrollY = Math.abs(Math.round(pos.y));
+      });
+    },
+    calculateHeight() {
+      //取得對應元素
+      let foodlist = this.$refs.foodScroll.getElementsByClassName(
+        "food-list-hook"
+      );
+      let height = 0;
+      this.listHeight.push(height);
+      for (let i = 0; i < foodlist.length; i++) {
+        const item = foodlist[i];
 
-					height += item.clientHeight;
-					this.listHeight.push(height);
-				}
-			},
-			//點擊左邊選單
-			selectMenu(index) {
-				//console.log(index);
-				let foodlist = this.$refs.foodScroll.getElementsByClassName(
-					"food-list-hook"
-				);
+        height += item.clientHeight;
+        this.listHeight.push(height);
+      }
+    },
+    //點擊左邊選單
+    selectMenu(index) {
+      //console.log(index);
+      let foodlist = this.$refs.foodScroll.getElementsByClassName(
+        "food-list-hook"
+      );
 
-				let el = foodlist[index];
-				//el:滾動的dom物件,250:延遲的時間(毫秒)
-				this.foodScroll.scrollToElement(el, 250);
-			},
-			calculateCount(spus) {
-				let count = 0;
+      let el = foodlist[index];
+      //el:滾動的dom物件,250:延遲的時間(毫秒)
+      this.foodScroll.scrollToElement(el, 250);
+    },
+    calculateCount(spus) {
+      let count = 0;
 
-				spus.forEach(food => {
-					if (food.count > 0) {
-						count += food.count;
-					}
-				});
+      spus.forEach(food => {
+        if (food.count > 0) {
+          count += food.count;
+        }
+      });
 
-				return count;
-			}
-		},
-		computed: {
-			currentIndex() {
-				//根據右側滾動位置,確認對應的索引
-				for (let i = 0; i < this.listHeight.length; i++) {
-					let height1 = this.listHeight[i];
-					let height2 = this.listHeight[i + 1];
+      return count;
+    }
+  },
+  computed: {
+    currentIndex() {
+      //根據右側滾動位置,確認對應的索引
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let height1 = this.listHeight[i];
+        let height2 = this.listHeight[i + 1];
 
-					//確認否在此區間內
-					if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
-						//console.log(i);
-						return i;
-					}
-				}
+        //確認否在此區間內
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          //console.log(i);
+          return i;
+        }
+      }
 
-				return 0;
-			},
-			selectFoods() {
-				let foods = [];
-				this.goods.forEach(good => {
-					good.spus.forEach(food => {
-						if (food.count > 0) {
-							foods.push(food);
-						}
-					});
-				});
+      return 0;
+    },
+    selectFoods() {
+      let foods = [];
+      this.goods.forEach(good => {
+        good.spus.forEach(food => {
+          if (food.count > 0) {
+            foods.push(food);
+          }
+        });
+      });
 
-				return foods;
-			}
-		}
-	};
+      return foods;
+    }
+  }
+};
 </script>
 
 <style>
-	@import url("Goods.css");
+@import url("Goods.css");
 </style>
