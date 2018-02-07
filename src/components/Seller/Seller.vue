@@ -1,14 +1,13 @@
 <template>
-  <div class="seller">
-    seller內容
-  </div>
+	<div class="seller">
+		seller內容
+	</div>
 </template>
 
 <script>
-  export default {
-
-  }
+export default {};
 </script>
 
 <style>
+@import url("Seller.css");
 </style>

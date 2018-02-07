@@ -35,7 +35,7 @@
 					<h3 class="title">{{ item.name }}</h3>
 
 					<ul>
-						<li v-for="food in item.spus" class="food-item">
+						<li v-for="food in item.spus" class="food-item" @click="showDetail(food)">
 							<!-- 商品圖片 -->
 							<div class="icon" :style="head_bg(food.picture)">
 							</div>
@@ -69,6 +69,9 @@
 
 		<!-- 購物車 -->
 		<Shopcart :poiInfo="poiInfo" :selectFoods="selectFoods"></Shopcart>
+
+		<!-- 商品詳情 -->
+		<Food :food="selectedFood" ref="foodView"></Food>
 	</div>
 </template>
 
@@ -76,6 +79,7 @@
 import BScroll from "better-scroll";
 import Shopcart from "components/Shopcart/Shopcart";
 import Cartcontrol from "components/Cartcontrol/Cartcontrol";
+import Food from "components/Food/Food";
 
 export default {
   data() {
@@ -86,13 +90,15 @@ export default {
       listHeight: [],
       scrollY: 0,
       menuScroll: {},
-      foodScroll: {}
+      foodScroll: {},
+      selectedFood: {}
     };
   },
   components: {
     BScroll,
     Shopcart,
-    Cartcontrol
+    Cartcontrol,
+    Food
   },
   //可在此進行非同步獲取資料
   created() {
@@ -181,6 +187,11 @@ export default {
       });
 
       return count;
+    },
+    showDetail(food) {
+      this.selectedFood = food;
+      //顯示商品詳情頁
+      this.$refs.foodView.showView();
     }
   },
   computed: {
