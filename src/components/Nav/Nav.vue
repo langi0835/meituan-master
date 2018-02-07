@@ -1,24 +1,30 @@
 <template>
-  <div class="nav">
+	<div class="nav">
 
-    <router-link to="/goods" class="nav-item">
-      點菜
-      <i class="line"></i>
-    </router-link>
-    <router-link to="/ratings" class="nav-item">
-      評價
-      <i class="line"></i>
-    </router-link>
-    <router-link to="/seller" class="nav-item">
-      商家
-      <i class="line"></i>
-    </router-link>
+		<router-link to="/goods" class="nav-item">
+			點菜
+			<i class="line"></i>
+		</router-link>
+		<router-link to="/ratings" class="nav-item">
+			評價({{commentNum}})
+			<i class="line"></i>
+		</router-link>
+		<router-link to="/seller" class="nav-item">
+			商家
+			<i class="line"></i>
+		</router-link>
 
-  </div>
+	</div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    commentNum: {
+      type: Number
+    }
+  }
+};
 </script>
 
 <style>
