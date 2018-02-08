@@ -85,3 +85,136 @@
 	font-size: 11px;
 	color: #999999;
 }
+
+.ratings .ratings-wrapper .content {
+	padding: 16px;
+}
+
+.ratings .ratings-wrapper .content .rating-select {
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 0;
+	border: 1px solid #ffb000;
+	margin-bottom: 11px;
+	border-radius: 3px;
+}
+
+.ratings .ratings-wrapper .content .rating-select .item {
+	width: 33.3%;
+	display: inline-block;
+	line-height: 33px;
+	font-size: 14px;
+	text-align: center;
+	border-right: 1px solid #ffb000;
+	box-sizing: border-box;
+	color: #ffb000;
+}
+
+.ratings .ratings-wrapper .content .rating-select .item:last-child {
+	border-right: 0;
+}
+
+.ratings .ratings-wrapper .content .rating-select .item.active {
+	background: #ffb000;
+	color: black;
+}
+
+.ratings .ratings-wrapper .content .rating-select .item img {
+	height: 14px;
+	vertical-align: middle;
+}
+
+.ratings .ratings-wrapper .content .label-view .item {
+	display: inline-block;
+	height: 27px;
+	line-height: 27px;
+	padding: 0 10px;
+	font-size: 12px;
+	background: #f4f4f4;
+	margin-right: 6px;
+	margin-bottom: 6px;
+	border-radius: 3px;
+	color: #999999;
+}
+
+.ratings .ratings-wrapper .content .label-view .item.highligh {
+	color: #656565;
+}
+
+.ratings .ratings-wrapper .content .rating-list {}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment {
+	padding: 16px 16px 16px 0;
+	border-bottom: 1px solid #f4f4f4;
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-header {
+	flex: 0 0 35px;
+	margin-right: 11px;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-header img {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main {
+	flex: 1;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .user {
+	width: 50%;
+	float: left;
+	font-size: 11px;
+	color: #333333;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .time {
+	width: 50%;
+	float: right;
+	text-align: right;
+	font-size: 9px;
+	color: #666666;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .star-wrapper {
+	float: left;
+	margin-top: 12px;
+	margin-bottom: 15px;
+	width: 100%;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .star-wrapper .text {
+	color: #999999;
+	font-size: 11px;
+	float: left;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .star-wrapper .star {
+	float: left;
+	margin-left: 7px;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .c_content {
+	font-size: 13px;
+	line-height: 19px;
+	float: left;
+	width: 100%;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .c_content i {
+	color: #576b95;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .img-wrapper {
+	margin-top: 9px;
+	float: left;
+}
+
+.ratings .ratings-wrapper .content .rating-list .rating-comment .comment-main .img-wrapper img {
+	width: 175px;
+}

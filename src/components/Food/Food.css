@@ -18,8 +18,6 @@
 	transform: translateX(100%)
 }
 
-.food .food-wrapper .food-content {}
-
 .food .food-wrapper .food-content .img-wrapper {
 	position: relative;
 	width: 100%;
@@ -184,6 +182,7 @@
 
 .food .food-wrapper .rating-wrapper .rating-content .rating-comment .comment-main {
 	flex: 1;
+	margin-top: 6px;
 }
 
 .food .food-wrapper .rating-wrapper .rating-content .rating-comment .comment-main .user {
