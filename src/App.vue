@@ -8,7 +8,9 @@
 		<navComponent :commentNum='commentNum'></navComponent>
 
 		<!-- content -->
-		<router-view></router-view>
+		<keep-alive>
+			<router-view></router-view>
+		</keep-alive>
 	</div>
 </template>
 
