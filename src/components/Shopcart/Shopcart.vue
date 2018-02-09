@@ -29,7 +29,7 @@
 				</div>
 				<div class="list-content" ref="listContent">
 					<ul>
-						<li class="food" v-for="food in selectFoods" :key="food.id">
+						<li class="food-item" v-for="food in selectFoods" :key="food.id">
 							<div class="desc-wrapper">
 								<div class="desc-left">
 									<p class="name">{{food.name}}</p>
